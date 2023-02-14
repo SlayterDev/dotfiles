@@ -1,0 +1,25 @@
+# This is Git's per-user configuration file.
+[user]
+	email = slayterdevelopment@gmail.com
+	name = Brad Slayter
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[alias]
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -a -m
+	ch = checkout
+	d = diff
+	dc = diff --cached
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
