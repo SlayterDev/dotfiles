@@ -10,6 +10,8 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 alias gcc='gcc-9'
 alias ll='ls -lh'
 
+alias ports='sudo netstat -plnt'
+
 alias vnc-swerver='ssh slayter@swerver -L 5901:127.0.0.1:5901'
 
 # Fig post block. Keep at the bottom of this file.
