@@ -1,10 +1,14 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+IS_MACOS=$(uname -s | grep -c Darwin)
+
+if [[ $IS_MACOS -eq 1 ]]; then
+    # Fig pre block. Keep at the top of this file.
+    [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+    # If you come from bash you might have to change your $PATH.
+    export PATH=$HOME/bin:/usr/local/bin:$PATH
+fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/slayter/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Colors.
 unset LSCOLORS
@@ -18,7 +22,7 @@ export CLICOLOR_FORCE=1
 ZSH_THEME="robbyrussell"
 
 # Nicer prompt.
-export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
+# export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -43,17 +47,26 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zprofile
 
 # Set architecture-specific brew share path.
-arch_name="$(uname -m)"
-if [ "${arch_name}" = "x86_64" ]; then
-    share_path="/usr/local/share"
-elif [ "${arch_name}" = "arm64" ]; then
-    share_path="/opt/homebrew/share"
-else
-    echo "Unknown architecture: ${arch_name}"
+# Only run on macOS
+if [[ $IS_MACOS -eq 1 ]]; then
+    arch_name="$(uname -m)"
+    if [ "${arch_name}" = "x86_64" ]; then
+        share_path="/usr/local/share"
+    elif [ "${arch_name}" = "arm64" ]; then
+        share_path="/opt/homebrew/share"
+    else
+        echo "Unknown architecture: ${arch_name}"
+    fi
+
+    source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+    # Tell homebrew to not autoupdate every single time I run it (just once a week).
+    export HOMEBREW_AUTO_UPDATE_SECS=604800
+
+    export PATH="/usr/local/Cellar/arm-gcc-bin@8/8-2019-q3-update_1/bin:$PATH"
 fi
 
 # Allow history search via up/down keys.
-source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
@@ -61,9 +74,6 @@ bindkey "^[[B" history-substring-search-down
 autoload -Uz compinit && compinit
 # Case insensitive.
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# Tell homebrew to not autoupdate every single time I run it (just once a week).
-export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Delete a given line number in the known_hosts file.
 knownrm() {
@@ -75,11 +85,11 @@ knownrm() {
     fi
 }
 
-export PATH="/usr/local/Cellar/arm-gcc-bin@8/8-2019-q3-update_1/bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+if [[ $IS_MACOS -eq 1 ]]; then
+    # Fig post block. Keep at the bottom of this file.
+    [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+fi
