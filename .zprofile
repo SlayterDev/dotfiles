@@ -15,5 +15,7 @@ alias ports='sudo netstat -plnt'
 alias vnc-swerver='ssh slayter@swerver -L 5901:127.0.0.1:5901'
 alias jupyter-tunnel='ssh -L 8888:localhost:8888 10.33.33.137'
 
+alias extip='curl -s https://icanhazip.com'
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
