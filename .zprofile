@@ -1,4 +1,5 @@
 # Fig pre block. Keep at the top of this file.
+IS_MACOS=$(uname -s | grep -c Darwin)
 if [[ $IS_MACOS -eq 1 ]]; then
     [[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
 fi
