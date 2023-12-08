@@ -1,10 +1,7 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 IS_MACOS=$(uname -s | grep -c Darwin)
-
 if [[ $IS_MACOS -eq 1 ]]; then
-    # Fig pre block. Keep at the top of this file.
-        # If you come from bash you might have to change your $PATH.
+    [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
     export PATH=$HOME/bin:/usr/local/bin:$PATH
 fi
 
@@ -90,13 +87,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [[ $IS_MACOS -eq 1 ]]; then
-    # Fig post block. Keep at the bottom of this file.
-fi
-
 pokemon-colorscripts -r 1
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+if [[ $IS_MACOS -eq 1 ]]; then
+    [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+fi

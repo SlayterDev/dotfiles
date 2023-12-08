@@ -1,5 +1,8 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
+if [[ $IS_MACOS -eq 1 ]]; then
+    [[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
+fi
+
 alias ddg='ssh ddg'
 export PATH="/usr/local/bin:/usr/local/Cellar/i386-elf-binutils/2.31/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
@@ -17,5 +20,10 @@ alias jupyter-tunnel='ssh -L 8888:localhost:8888 10.33.33.137'
 
 alias extip='curl -s https://icanhazip.com'
 
+alias fix-mkv='xhost +local:'
+alias del-derived='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
+
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
+if [[ $IS_MACOS -eq 1 ]]; then
+    [[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
+fi
