@@ -24,6 +24,8 @@ alias extip='curl -s https://icanhazip.com'
 alias fix-mkv='xhost +local:'
 alias del-derived='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
+alias allow-x-apps="export DISPLAY=':1' && xhost +"
+
 # Fig post block. Keep at the bottom of this file.
 if [[ $IS_MACOS -eq 1 ]]; then
     [[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
