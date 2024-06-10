@@ -95,3 +95,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if [[ $IS_MACOS -eq 1 ]]; then
     [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 fi
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/Users/slayter/.cache/lm-studio/bin"

@@ -30,3 +30,12 @@ alias allow-x-apps="export DISPLAY=':1' && xhost +"
 if [[ $IS_MACOS -eq 1 ]]; then
     [[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
 fi
+
+##
+# Your previous /Users/slayter/.zprofile file was backed up as /Users/slayter/.zprofile.macports-saved_2024-04-26_at_13:44:21
+##
+
+# MacPorts Installer addition on 2024-04-26_at_13:44:21: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
